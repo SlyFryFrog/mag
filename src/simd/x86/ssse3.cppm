@@ -66,7 +66,7 @@ namespace MAG_NAMESPACE::simd
 		MAG_INLINE static uint32_t hsum(const native_t v) noexcept
 		{
 			return static_cast<uint32_t>(
-					_mm_cvtsi128_si32(_mm_hadd_epi32(_mm_hadd_epi32(v, v), v)));
+				_mm_cvtsi128_si32(_mm_hadd_epi32(_mm_hadd_epi32(v, v), v)));
 		}
 	};
 } // namespace MAG_NAMESPACE::simd

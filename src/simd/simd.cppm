@@ -43,7 +43,7 @@ namespace MAG_NAMESPACE::simd
 		native_type m_native{};
 
 	public:
-		using value_type = T;
+		using value_type			  = T;
 		static constexpr size_t lanes = N;
 
 		[[nodiscard]] static consteval size_t size() noexcept { return N; }
@@ -75,10 +75,10 @@ namespace MAG_NAMESPACE::simd
 
 		MAG_INLINE explicit Simd(native_type data) noexcept : m_native(data) {}
 
-		Simd(const Simd&) noexcept = default;
-		Simd(Simd&&) noexcept = default;
+		Simd(const Simd&) noexcept			  = default;
+		Simd(Simd&&) noexcept				  = default;
 		Simd& operator=(const Simd&) noexcept = default;
-		Simd& operator=(Simd&&) noexcept = default;
+		Simd& operator=(Simd&&) noexcept	  = default;
 
 		MAG_INLINE friend Simd operator+(const Simd& a, const Simd& b)
 			requires supports_add<T, N, default_isa>
@@ -104,8 +104,9 @@ namespace MAG_NAMESPACE::simd
 		MAG_INLINE friend Simd operator+(const Simd& a, T b)
 			requires supports_add<T, N, default_isa>
 		{
-			return Simd{ops_impl<T, N, default_isa>::add(a.m_native,
-														 ops_impl<T, N, default_isa>::splat(b))};
+			return Simd{ops_impl<T, N, default_isa>::add(
+				a.m_native,
+				ops_impl<T, N, default_isa>::splat(b))};
 		}
 		MAG_INLINE friend Simd operator+(T a, const Simd& b)
 			requires supports_add<T, N, Isa>

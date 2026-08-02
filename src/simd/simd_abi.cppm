@@ -68,7 +68,7 @@ namespace MAG_NAMESPACE::simd
 	consteval size_t nativeRegisterBytes() noexcept
 	{
 #if defined(MAG_SIMD_BACKEND_SSE2) || defined(MAG_SIMD_BACKEND_SSSE3) ||                           \
-		defined(MAG_SIMD_BACKEND_SSE4_1) || defined(MAG_SIMD_BACKEND_NEON)
+	defined(MAG_SIMD_BACKEND_SSE4_1) || defined(MAG_SIMD_BACKEND_NEON)
 		return 16;
 #else
 		return 0;

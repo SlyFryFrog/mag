@@ -37,7 +37,9 @@ export namespace MAG_NAMESPACE
 		for (size_t i = 0; i < N; ++i)
 		{
 			if (auto cmp = a[i] <=> b[i]; cmp != 0)
+			{
 				return cmp;
+			}
 		}
 
 		return comparison_t::equivalent;
@@ -47,8 +49,12 @@ export namespace MAG_NAMESPACE
 	constexpr bool operator==(const Vec<T, N>& a, const Vec<U, N>& b) noexcept
 	{
 		for (size_t i = 0; i < N; ++i)
+		{
 			if (a[i] != b[i])
+			{
 				return false;
+			}
+		}
 		return true;
 	}
 
@@ -78,7 +84,9 @@ export namespace MAG_NAMESPACE
 #endif
 
 		for (size_t i = 0; i < N; ++i)
+		{
 			ret[i] = a[i] + b[i];
+		}
 		return ret;
 	}
 
@@ -102,7 +110,9 @@ export namespace MAG_NAMESPACE
 #endif
 
 		for (size_t i = 0; i < N; ++i)
+		{
 			ret[i] = a[i] - b[i];
+		}
 		return ret;
 	}
 
@@ -126,7 +136,9 @@ export namespace MAG_NAMESPACE
 #endif
 
 		for (size_t i = 0; i < N; ++i)
+		{
 			ret[i] = a[i] * b[i];
+		}
 		return ret;
 	}
 
@@ -150,7 +162,9 @@ export namespace MAG_NAMESPACE
 #endif
 
 		for (size_t i = 0; i < N; ++i)
+		{
 			ret[i] = a[i] / b[i];
+		}
 		return ret;
 	}
 
@@ -174,7 +188,9 @@ export namespace MAG_NAMESPACE
 #endif
 
 		for (size_t i = 0; i < N; ++i)
+		{
 			ret[i] = a[i] + s;
+		}
 		return ret;
 	}
 
@@ -198,7 +214,9 @@ export namespace MAG_NAMESPACE
 #endif
 
 		for (size_t i = 0; i < N; ++i)
+		{
 			ret[i] = b[i] + s;
+		}
 		return ret;
 	}
 
@@ -222,7 +240,9 @@ export namespace MAG_NAMESPACE
 #endif
 
 		for (size_t i = 0; i < N; ++i)
+		{
 			ret[i] = a[i] - s;
+		}
 		return ret;
 	}
 
@@ -246,7 +266,9 @@ export namespace MAG_NAMESPACE
 #endif
 
 		for (size_t i = 0; i < N; ++i)
+		{
 			ret[i] = s - b[i];
+		}
 		return ret;
 	}
 
@@ -270,7 +292,9 @@ export namespace MAG_NAMESPACE
 #endif
 
 		for (size_t i = 0; i < N; ++i)
+		{
 			ret[i] = a[i] * s;
+		}
 		return ret;
 	}
 
@@ -294,7 +318,9 @@ export namespace MAG_NAMESPACE
 #endif
 
 		for (size_t i = 0; i < N; ++i)
+		{
 			ret[i] = b[i] * s;
+		}
 		return ret;
 	}
 
@@ -318,7 +344,9 @@ export namespace MAG_NAMESPACE
 #endif
 
 		for (size_t i = 0; i < N; ++i)
+		{
 			ret[i] = a[i] / s;
+		}
 		return ret;
 	}
 } // namespace MAG_NAMESPACE

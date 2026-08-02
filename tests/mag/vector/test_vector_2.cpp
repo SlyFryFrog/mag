@@ -61,7 +61,10 @@ TEST_CASE("Vec2 length, dot, normalize", "[Vec2]")
 {
 	Vec<float, 2> a{3.0f, 4.0f};
 
-	SECTION("Length") { REQUIRE(a.length() == Catch::Approx(5.0f)); }
+	SECTION("Length")
+	{
+		REQUIRE(a.length() == Catch::Approx(5.0f));
+	}
 
 	SECTION("Dot product")
 	{
@@ -200,7 +203,9 @@ TEST_CASE("Vec2 utilities and aliases", "[Vec2]")
 
 		float sum = 0.0f;
 		for (float c : color)
+		{
 			sum += c;
+		}
 		REQUIRE(sum == Catch::Approx(7.0f));
 
 		auto rev = color.rbegin();

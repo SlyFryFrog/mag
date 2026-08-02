@@ -28,9 +28,9 @@ namespace MAG_NAMESPACE
 	{
 		using R = std::common_type_t<T, U>;
 		return Vec<R, 3>{
-				a[1] * b[2] - a[2] * b[1],
-				a[2] * b[0] - a[0] * b[2],
-				a[0] * b[1] - a[1] * b[0],
+			a[1] * b[2] - a[2] * b[1],
+			a[2] * b[0] - a[0] * b[2],
+			a[0] * b[1] - a[1] * b[0],
 		};
 	}
 

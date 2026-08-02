@@ -43,16 +43,24 @@ namespace MAG_NAMESPACE
 		constexpr Mat() noexcept
 		{
 			for (auto& col : m)
+			{
 				for (auto& v : col)
+				{
 					v = static_cast<T>(0);
+				}
+			}
 		}
 
 		template <Numeric U>
 		constexpr explicit Mat(U val) noexcept
 		{
 			for (auto& col : m)
+			{
 				for (auto& v : col)
+				{
 					v = static_cast<T>(val);
+				}
+			}
 		}
 
 		// clang-format off
@@ -89,10 +97,11 @@ namespace MAG_NAMESPACE
 		template <Numeric U>
 		constexpr Vec<T, 4> operator*(const Vec<U, 4>& v) const noexcept
 		{
-			return {m[0][0] * v.x + m[1][0] * v.y + m[2][0] * v.z + m[3][0] * v.w,
-					m[0][1] * v.x + m[1][1] * v.y + m[2][1] * v.z + m[3][1] * v.w,
-					m[0][2] * v.x + m[1][2] * v.y + m[2][2] * v.z + m[3][2] * v.w,
-					m[0][3] * v.x + m[1][3] * v.y + m[2][3] * v.z + m[3][3] * v.w};
+			return {
+				m[0][0] * v.x + m[1][0] * v.y + m[2][0] * v.z + m[3][0] * v.w,
+				m[0][1] * v.x + m[1][1] * v.y + m[2][1] * v.z + m[3][1] * v.w,
+				m[0][2] * v.x + m[1][2] * v.y + m[2][2] * v.z + m[3][2] * v.w,
+				m[0][3] * v.x + m[1][3] * v.y + m[2][3] * v.z + m[3][3] * v.w};
 		}
 
 		constexpr static Mat identity() noexcept { return Mat::diagonal(1); }
@@ -222,7 +231,7 @@ namespace MAG_NAMESPACE
 			const Vec<U, 3> s{cross(f, up).normalized()};	// Right vector
 			const Vec<U, 3> u{cross(s, f)};
 
-			// clang-format off
+															// clang-format off
 			return Mat{s.x,  s.y,  s.z, -s.dot(eye),
 					   u.x,  u.y,  u.z, -u.dot(eye),
 				      -f.x, -f.y, -f.z,  f.dot(eye),

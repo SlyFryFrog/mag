@@ -151,8 +151,12 @@ namespace MAG_NAMESPACE
 			}
 #endif
 			for (size_t c = 0; c < C; ++c)
+			{
 				for (size_t r = 0; r < R; ++r)
+				{
 					derived()(c, r) += val;
+				}
+			}
 			return derived();
 		}
 
@@ -174,8 +178,12 @@ namespace MAG_NAMESPACE
 			}
 #endif
 			for (size_t c = 0; c < C; ++c)
+			{
 				for (size_t r = 0; r < R; ++r)
+				{
 					derived()(c, r) -= val;
+				}
+			}
 			return derived();
 		}
 
@@ -197,8 +205,12 @@ namespace MAG_NAMESPACE
 			}
 #endif
 			for (size_t c = 0; c < C; ++c)
+			{
 				for (size_t r = 0; r < R; ++r)
+				{
 					derived()(c, r) *= val;
+				}
+			}
 			return derived();
 		}
 
@@ -220,8 +232,12 @@ namespace MAG_NAMESPACE
 			}
 #endif
 			for (size_t c = 0; c < C; ++c)
+			{
 				for (size_t r = 0; r < R; ++r)
+				{
 					derived()(c, r) /= val;
+				}
+			}
 			return derived();
 		}
 
@@ -243,8 +259,12 @@ namespace MAG_NAMESPACE
 			}
 #endif
 			for (size_t c = 0; c < C; ++c)
+			{
 				for (size_t r = 0; r < R; ++r)
+				{
 					derived()(c, r) += rhs(c, r);
+				}
+			}
 			return derived();
 		}
 
@@ -266,8 +286,12 @@ namespace MAG_NAMESPACE
 			}
 #endif
 			for (size_t c = 0; c < C; ++c)
+			{
 				for (size_t r = 0; r < R; ++r)
+				{
 					derived()(c, r) -= rhs(c, r);
+				}
+			}
 			return derived();
 		}
 
@@ -289,8 +313,12 @@ namespace MAG_NAMESPACE
 			}
 #endif
 			for (size_t c = 0; c < C; ++c)
+			{
 				for (size_t r = 0; r < R; ++r)
+				{
 					derived()(c, r) *= rhs(c, r);
+				}
+			}
 			return derived();
 		}
 
@@ -306,8 +334,12 @@ namespace MAG_NAMESPACE
 		{
 			Mat<T, R, C> result{};
 			for (size_t c = 0; c < C; ++c)
+			{
 				for (size_t r = 0; r < R; ++r)
+				{
 					result(r, c) = derived()(c, r);
+				}
+			}
 			return result;
 		}
 
@@ -327,7 +359,9 @@ namespace MAG_NAMESPACE
 			Derived result{};
 			const size_t limit = (R < C ? R : C);
 			for (size_t i = 0; i < limit; ++i)
+			{
 				result(i, i) = val;
+			}
 			return result;
 		}
 
@@ -348,7 +382,9 @@ namespace MAG_NAMESPACE
 			Derived result{};
 			const size_t limit = (R < C) ? R : C;
 			for (size_t i = 0; i < limit; ++i)
+			{
 				result(i, i) = diagVals[i];
+			}
 			return result;
 		}
 
@@ -376,11 +412,15 @@ namespace MAG_NAMESPACE
 				{
 					oss << m[c][r];
 					if (c != C - 1)
+					{
 						oss << ", ";
+					}
 				}
 				oss << "]";
 				if (r < R - 1)
+				{
 					oss << ", ";
+				}
 				oss << "\n";
 			}
 			oss << ")";
@@ -396,16 +436,24 @@ namespace MAG_NAMESPACE
 		constexpr Mat() noexcept
 		{
 			for (size_t c = 0; c < C; ++c)
+			{
 				for (size_t r = 0; r < R; ++r)
+				{
 					m(c, r) = static_cast<T>(0);
+				}
+			}
 		}
 
 		template <Numeric U>
 		constexpr explicit Mat(U val) noexcept
 		{
 			for (size_t c = 0; c < C; ++c)
+			{
 				for (size_t r = 0; r < R; ++r)
+				{
 					m(c, r) = static_cast<T>(val);
+				}
+			}
 		}
 	};
 } // namespace MAG_NAMESPACE

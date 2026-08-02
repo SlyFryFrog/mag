@@ -76,7 +76,10 @@ TEST_CASE("Vec4 length, dot, normalize", "[Vec4]")
 {
 	Vec<float, 4> a{1.0f, 2.0f, 3.0f, 4.0f};
 
-	SECTION("Length") { REQUIRE(a.length() == Catch::Approx(std::sqrt(30.0f))); }
+	SECTION("Length")
+	{
+		REQUIRE(a.length() == Catch::Approx(std::sqrt(30.0f)));
+	}
 
 	SECTION("Dot product")
 	{
@@ -212,7 +215,7 @@ TEST_CASE("Vec4 compound operators and scalar-left overloads", "[Vec4]")
 	SECTION("Scalar-left operators")
 	{
 		Vec<float, 4> v{1.0f, 2.0f, 3.0f, 4.0f};
-		auto sum = 10.0f + v;
+		auto sum  = 10.0f + v;
 		auto diff = 10.0f - v;
 		auto prod = 0.5f * v;
 
@@ -260,7 +263,9 @@ TEST_CASE("Vec4 utility helpers and iterators", "[Vec4]")
 		Vec<float, 4> v{1.0f, 2.0f, 3.0f, 4.0f};
 		float forwardSum = 0.0f;
 		for (float c : v)
+		{
 			forwardSum += c;
+		}
 		REQUIRE(forwardSum == Catch::Approx(10.0f));
 
 		auto rit = v.rbegin();

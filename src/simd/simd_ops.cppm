@@ -29,7 +29,7 @@ export namespace MAG_NAMESPACE::simd
 		sse2,
 		ssse3,
 		sse4_1,
-		neon,
+		neon, ///< Supported on Arm64 only
 	};
 
 	/**
@@ -46,15 +46,14 @@ export namespace MAG_NAMESPACE::simd
 	template <Numeric T, size_t N, simd_isa Isa>
 	struct ops_impl;
 
-	// Conditionally select the default ISA based on CMake selection first,
-	// then compiler-provided ISA macros.
+	// Conditionally select the default ISA based on the define provided to CMake
 #if defined(MAG_SIMD_BACKEND_SSE4_1)
-	constexpr simd_isa default_isa = simd_isa::sse4_1;
+	constexpr auto default_isa = simd_isa::sse4_1;
 #elif defined(MAG_SIMD_BACKEND_SSSE3)
-	constexpr simd_isa default_isa = simd_isa::ssse3;
+	constexpr auto default_isa = simd_isa::ssse3;
 #elif defined(MAG_SIMD_BACKEND_SSE2)
-	constexpr simd_isa default_isa = simd_isa::sse2;
+	constexpr auto default_isa = simd_isa::sse2;
 #elif defined(MAG_SIMD_BACKEND_NEON)
-	constexpr simd_isa default_isa = simd_isa::neon;
+	constexpr auto default_isa = simd_isa::neon;
 #endif
 } // namespace MAG_NAMESPACE::simd
