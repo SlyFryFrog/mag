@@ -44,7 +44,6 @@ AllowAllParametersOfDeclarationOnNextLine: false
 AllowAllArgumentsOnNextLine: false
 BreakTemplateDeclarations: Yes
 BinPackArguments: false
-BinPackParameters: BinPack
 AlignAfterOpenBracket: AlwaysBreak
 
 # Constructor initializer lists
