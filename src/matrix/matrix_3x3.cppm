@@ -41,16 +41,24 @@ namespace MAG_NAMESPACE
 		constexpr Mat() noexcept
 		{
 			for (auto& col : m)
+			{
 				for (auto& val : col)
+				{
 					val = T(0);
+				}
+			}
 		}
 
 		template <Numeric U>
 		constexpr explicit Mat(U val) noexcept
 		{
 			for (auto& col : m)
+			{
 				for (auto& v : col)
+				{
 					v = static_cast<T>(val);
+				}
+			}
 		}
 
 		// clang-format off
@@ -80,9 +88,10 @@ namespace MAG_NAMESPACE
 		template <Numeric U>
 		constexpr Vec<T, 3> operator*(const Vec<U, 3>& v) noexcept
 		{
-			return {m[0][0] * v.x + m[1][0] * v.y + m[2][0] * v.z,
-					m[0][1] * v.x + m[1][1] * v.y + m[2][1] * v.z,
-					m[0][2] * v.x + m[1][2] * v.y + m[2][2] * v.z};
+			return {
+				m[0][0] * v.x + m[1][0] * v.y + m[2][0] * v.z,
+				m[0][1] * v.x + m[1][1] * v.y + m[2][1] * v.z,
+				m[0][2] * v.x + m[1][2] * v.y + m[2][2] * v.z};
 		}
 
 		constexpr static Mat identity() noexcept { return Mat::diagonal(1); }
@@ -96,8 +105,8 @@ namespace MAG_NAMESPACE
 
 			// Calculate the determinant
 			const T det{
-					m00 * (m11 * m22 - m21 * m12) - m10 * (m01 * m22 - m21 * m02) +
-							m20 * (m01 * m12 - m11 * m02),
+				m00 * (m11 * m22 - m21 * m12) - m10 * (m01 * m22 - m21 * m02) +
+					m20 * (m01 * m12 - m11 * m02),
 			};
 			const T inv_det{1 / det};
 

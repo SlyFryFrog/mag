@@ -56,8 +56,10 @@ TEST_CASE("simd compile-time contracts", "[simd]")
 
 	STATIC_REQUIRE(std::same_as<basic_simd<float, native_abi>, native_simd<float>>);
 	STATIC_REQUIRE(std::same_as<fixed_simd<float, 4>, Simd<float, 4>>);
-	STATIC_REQUIRE(std::same_as<decltype(load<float, fixed_abi<4>>(std::declval<const float*>())),
-								fixed_simd<float, 4>>);
+	STATIC_REQUIRE(
+		std::same_as<
+			decltype(load<float, fixed_abi<4>>(std::declval<const float*>())),
+			fixed_simd<float, 4>>);
 	STATIC_REQUIRE(std::same_as<decltype(splat<float, fixed_abi<4>>(1.0f)), fixed_simd<float, 4>>);
 
 	STATIC_REQUIRE(supports_add<float, 4>);
@@ -146,7 +148,7 @@ TEST_CASE("f32x compound arithmetic and helpers", "[simd]")
 		const f32x4 fromPointer{data.data()};
 		const f32x4 fromSpan{std::span<const float, 4>{data}};
 		const f32x4 fromArgs{5.0f, 6.0f, 7.0, 8.0};
-		const fixed_simd<float, 4> fixedLoaded = load<float, fixed_abi<4>>(data.data());
+		const fixed_simd<float, 4> fixedLoaded	 = load<float, fixed_abi<4>>(data.data());
 		const fixed_simd<float, 4> fixedSplatted = splat<float, fixed_abi<4>>(9.0f);
 		const f32x4 roundTripped{fromArgs.native()};
 
@@ -176,13 +178,19 @@ TEST_CASE("f32x reductions and elementwise helpers", "[simd]")
 	requireSimdEquals(max(a, b), {4.0f, -2.0f, 12.0f, -8.0f});
 
 	if constexpr (requires(f32x4 value) { neg(value); })
+	{
 		requireSimdEquals(neg(a), {-4.0f, 2.0f, -9.0f, 16.0f});
+	}
 
 	if constexpr (requires(f32x4 value) { abs(value); })
+	{
 		requireSimdEquals(abs(a), {4.0f, 2.0f, 9.0f, 16.0f});
+	}
 
 	if constexpr (requires(f32x4 value) { sqrt(value); })
+	{
 		requireSimdEquals(sqrt(abs(a)), {2.0f, std::sqrt(2.0f), 3.0f, 4.0f});
+	}
 }
 
 TEST_CASE("f64x and integer simd paths stay wired up", "[simd]")

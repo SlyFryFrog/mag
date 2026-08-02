@@ -28,9 +28,15 @@ export namespace MAG_NAMESPACE
 	constexpr bool operator==(const Mat<T, C, R>& lhs, const Mat<U, C, R>& rhs) noexcept
 	{
 		for (size_t c = 0; c < C; ++c)
+		{
 			for (size_t r = 0; r < R; ++r)
+			{
 				if (lhs(c, r) != rhs(c, r))
+				{
 					return false;
+				}
+			}
+		}
 		return true;
 	}
 
@@ -45,8 +51,12 @@ export namespace MAG_NAMESPACE
 	{
 		Mat<std::common_type_t<T, U>, R, C> ret;
 		for (size_t c = 0; c < C; ++c)
+		{
 			for (size_t r = 0; r < R; ++r)
+			{
 				ret(c, r) = a(c, r) + static_cast<T>(val);
+			}
+		}
 		return ret;
 	}
 
@@ -55,8 +65,12 @@ export namespace MAG_NAMESPACE
 	{
 		Mat<std::common_type_t<T, U>, R, C> ret;
 		for (size_t c = 0; c < C; ++c)
+		{
 			for (size_t r = 0; r < R; ++r)
+			{
 				ret(c, r) = a(c, r) - static_cast<T>(val);
+			}
+		}
 		return ret;
 	}
 
@@ -65,8 +79,12 @@ export namespace MAG_NAMESPACE
 	{
 		Mat<std::common_type_t<T, U>, R, C> ret;
 		for (size_t c = 0; c < C; ++c)
+		{
 			for (size_t r = 0; r < R; ++r)
+			{
 				ret(c, r) = a(c, r) * static_cast<T>(val);
+			}
+		}
 		return ret;
 	}
 
@@ -75,8 +93,12 @@ export namespace MAG_NAMESPACE
 	{
 		Mat<std::common_type_t<T, U>, R, C> ret;
 		for (size_t c = 0; c < C; ++c)
+		{
 			for (size_t r = 0; r < R; ++r)
+			{
 				ret(c, r) = a(c, r) / static_cast<T>(val);
+			}
+		}
 		return ret;
 	}
 
@@ -85,8 +107,12 @@ export namespace MAG_NAMESPACE
 	{
 		Mat<std::common_type_t<T, U>, R, C> ret;
 		for (size_t c = 0; c < C; ++c)
+		{
 			for (size_t r = 0; r < R; ++r)
+			{
 				ret(c, r) = lhs(c, r) + static_cast<T>(rhs(c, r));
+			}
+		}
 		return ret;
 	}
 
@@ -95,8 +121,12 @@ export namespace MAG_NAMESPACE
 	{
 		Mat<std::common_type_t<T, U>, R, C> ret;
 		for (size_t c = 0; c < C; ++c)
+		{
 			for (size_t r = 0; r < R; ++r)
+			{
 				ret(c, r) = lhs(c, r) - static_cast<T>(rhs(c, r));
+			}
+		}
 		return ret;
 	}
 
@@ -105,9 +135,15 @@ export namespace MAG_NAMESPACE
 	{
 		Mat<std::common_type_t<T, U>, R, C> result{};
 		for (size_t c = 0; c < C; ++c)
+		{
 			for (size_t r = 0; r < R; ++r)
+			{
 				for (size_t k = 0; k < K; ++k)
+				{
 					result(c, r) += lhs(c, k) * rhs(k, r);
+				}
+			}
+		}
 		return result;
 	}
 } // namespace MAG_NAMESPACE

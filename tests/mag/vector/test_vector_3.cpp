@@ -69,7 +69,10 @@ TEST_CASE("Vec3 length, dot, normalize", "[Vec3]")
 {
 	Vec<float, 3> a{1.0f, 2.0f, 3.0f};
 
-	SECTION("Length") { REQUIRE(a.length() == Catch::Approx(std::sqrt(14.0f))); }
+	SECTION("Length")
+	{
+		REQUIRE(a.length() == Catch::Approx(std::sqrt(14.0f)));
+	}
 
 	SECTION("Dot product")
 	{
@@ -222,7 +225,9 @@ TEST_CASE("Vec3 cross product, aliases, and iterators", "[Vec3]")
 
 		float sum = 0.0f;
 		for (float c : color)
+		{
 			sum += c;
+		}
 		REQUIRE(sum == Catch::Approx(15.0f));
 
 		auto rev = color.rbegin();

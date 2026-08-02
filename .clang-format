@@ -13,6 +13,7 @@ AccessModifierOffset: -4
 
 # Braces & init lists
 BreakBeforeBraces: Allman
+InsertBraces: true
 BraceWrapping:
   AfterCaseLabel: true
   AfterClass: true
@@ -35,36 +36,43 @@ Cpp11BracedListStyle: true
 
 # Short constructs — always expanded
 AllowShortEnumsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: All
-AllowShortIfStatementsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: InlineOnly
+AllowShortIfStatementsOnASingleLine: Never
 AllowShortLoopsOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
 AllowAllParametersOfDeclarationOnNextLine: false
 AllowAllArgumentsOnNextLine: false
-AlwaysBreakTemplateDeclarations: Yes
+BreakTemplateDeclarations: Yes
 BinPackArguments: false
-BinPackParameters: false
-AlignAfterOpenBracket: true
+BinPackParameters: BinPack
+AlignAfterOpenBracket: AlwaysBreak
 
 # Constructor initializer lists
 BreakConstructorInitializers: AfterColon
-ConstructorInitializerAllOnOneLineOrOnePerLine: true
 
 # Function calls & chaining
 PenaltyBreakBeforeFirstCallParameter: 40
 BreakBeforeBinaryOperators: None
-ContinuationIndentWidth: 8
+ContinuationIndentWidth: 4
 
-# Other formatting
-AlignTrailingComments: true
-AlignConsecutiveAssignments: false
-AlignConsecutiveDeclarations: false
+AlignTrailingComments:
+  Kind: Always
+  OverEmptyLines: 2
+
+# Alignment for consecutive assignments/declarations
+AlignConsecutiveAssignments:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+
+AlignConsecutiveDeclarations:
+  Enabled: false
+
+# Other settings
 PointerAlignment: Left
 DerivePointerAlignment: false
-SpaceInEmptyParentheses: false
-SpacesInParentheses: false
 InsertNewlineAtEOF: true
-SortIncludes: true
+SortIncludes: CaseSensitive
 MaxEmptyLinesToKeep: 2
 EmptyLineBeforeAccessModifier: Always
 FixNamespaceComments: true

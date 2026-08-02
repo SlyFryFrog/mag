@@ -50,7 +50,9 @@ namespace MAG_NAMESPACE
 #endif
 		T ret{0};
 		for (size_t i = 0; i < N; ++i)
+		{
 			ret += v[i] * v[i];
+		}
 
 		return std::sqrt(ret);
 	}
@@ -74,9 +76,11 @@ namespace MAG_NAMESPACE
 		}
 #endif
 		using R = std::common_type_t<T, U>;
-		R ret = 0;
+		R ret	= 0;
 		for (size_t i = 0; i < N; ++i)
+		{
 			ret += a[i] * b[i];
+		}
 		return ret;
 	}
 
@@ -90,8 +94,9 @@ namespace MAG_NAMESPACE
 	constexpr Vec<T, N> lerp(const Vec<T, N>& a, const Vec<U, N>& b, T t) noexcept
 	{
 #ifdef MAG_ENABLE_SIMD
-		if constexpr (std::is_same_v<T, U> && supports_splat<T, N> && supports_add<T, N> &&
-					  supports_sub<T, N> && supports_mul<T, N>)
+		if constexpr (
+			std::is_same_v<T, U> && supports_splat<T, N> && supports_add<T, N> &&
+			supports_sub<T, N> && supports_mul<T, N>)
 		{
 			Vec<T, N> r;
 
@@ -193,7 +198,9 @@ namespace MAG_NAMESPACE
 			}
 #endif
 			for (size_t i = 0; i < N; ++i)
+			{
 				derived()[i] += o[i];
+			}
 			return derived();
 		}
 
@@ -213,7 +220,9 @@ namespace MAG_NAMESPACE
 			}
 #endif
 			for (size_t i = 0; i < N; ++i)
+			{
 				derived()[i] -= o[i];
+			}
 			return derived();
 		}
 
@@ -233,7 +242,9 @@ namespace MAG_NAMESPACE
 			}
 #endif
 			for (size_t i = 0; i < N; ++i)
+			{
 				derived()[i] *= o[i];
+			}
 			return derived();
 		}
 
@@ -253,7 +264,9 @@ namespace MAG_NAMESPACE
 			}
 #endif
 			for (size_t i = 0; i < N; ++i)
+			{
 				derived()[i] /= o[i];
+			}
 			return derived();
 		}
 
@@ -273,7 +286,9 @@ namespace MAG_NAMESPACE
 			}
 #endif
 			for (size_t i = 0; i < N; ++i)
+			{
 				derived()[i] += s;
+			}
 			return derived();
 		}
 
@@ -293,7 +308,9 @@ namespace MAG_NAMESPACE
 			}
 #endif
 			for (size_t i = 0; i < N; ++i)
+			{
 				derived()[i] -= s;
+			}
 			return derived();
 		}
 
@@ -313,7 +330,9 @@ namespace MAG_NAMESPACE
 			}
 #endif
 			for (size_t i = 0; i < N; ++i)
+			{
 				derived()[i] *= s;
+			}
 			return derived();
 		}
 
@@ -333,7 +352,9 @@ namespace MAG_NAMESPACE
 			}
 #endif
 			for (size_t i = 0; i < N; ++i)
+			{
 				derived()[i] /= s;
+			}
 			return derived();
 		}
 
@@ -344,7 +365,9 @@ namespace MAG_NAMESPACE
 			Derived ret = derived();
 			T len{ret.length()};
 			if (len > 0)
+			{
 				ret /= len;
+			}
 			return ret;
 		}
 
@@ -352,7 +375,9 @@ namespace MAG_NAMESPACE
 		{
 			Derived ret = derived();
 			for (size_t i = 0; i < N; ++i)
+			{
 				ret[i] = std::clamp(derived()[i], min, max);
+			}
 			return ret;
 		}
 
@@ -376,9 +401,13 @@ namespace MAG_NAMESPACE
 			for (size_t i = 0; i < N; ++i)
 			{
 				if (i != N - 1)
+				{
 					oss << derived()[i] << ", ";
+				}
 				else
+				{
 					oss << derived()[i];
+				}
 			}
 			oss << ")";
 			return oss.str();
@@ -395,7 +424,9 @@ namespace MAG_NAMESPACE
 		explicit constexpr Vec(T val)
 		{
 			for (size_t i = 0; i < N; ++i)
+			{
 				v[i] = val;
+			}
 		}
 	};
 }; // namespace MAG_NAMESPACE
