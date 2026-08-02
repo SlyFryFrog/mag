@@ -4,6 +4,7 @@ project(mag LANGUAGES CXX)
 #####################
 # Compiler settings #
 #####################
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -11,6 +12,7 @@ if (PROJECT_IS_TOP_LEVEL)
     set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 endif ()
 
+# Check for valid compiler
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 18)
         message(FATAL_ERROR
@@ -39,6 +41,7 @@ endif ()
 ###########
 # Options #
 ###########
+
 option(MAG_BUILD_TESTS "Build tests" OFF)
 option(MAG_BUILD_BENCHMARKS "Build benchmarks" OFF)
 option(MAG_ENABLE_SIMD "Enable simd for supported platforms" ON)
@@ -53,6 +56,7 @@ set_property(CACHE MAG_SIMD_BACKEND PROPERTY STRINGS AUTO SSE2 SSSE3 SSE4_1 NEON
 #################
 # Set constants #
 #################
+
 file(GLOB_RECURSE MODULES
         ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cppm
         ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
@@ -64,6 +68,7 @@ file(GLOB_RECURSE HEADERS
 ###################
 # Target: library #
 ###################
+
 add_library(mag)
 add_library(mag::mag ALIAS mag)
 
@@ -157,6 +162,7 @@ target_compile_features(mag
 #######################################
 # Add compile definitions and options #
 #######################################
+
 target_compile_definitions(mag PRIVATE
         $<$<BOOL:${MAG_ENABLE_SIMD}>:MAG_ENABLE_SIMD>
         $<$<AND:$<BOOL:${MAG_ENABLE_SIMD}>,$<BOOL:${MAG_SIMD_BACKEND_SELECTED}>>:MAG_SIMD_BACKEND_${MAG_SIMD_BACKEND_SELECTED}>
@@ -172,11 +178,13 @@ target_compile_options(mag PRIVATE
 #####################
 # Build-tree export #
 #####################
+
 export(TARGETS mag FILE "${CMAKE_CURRENT_BINARY_DIR}/mag_targets.cmake")
 
 ###############
 # Build tests #
 ###############
+
 if (MAG_BUILD_TESTS OR MAG_BUILD_BENCHMARKS)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/Catch2)
 endif ()
@@ -189,6 +197,7 @@ endif ()
 ####################
 # Build benchmarks #
 ####################
+
 if (MAG_BUILD_BENCHMARKS)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/benchmarks)
 endif ()
@@ -196,6 +205,7 @@ endif ()
 #############
 # Dev tools #
 #############
+
 if (PROJECT_IS_TOP_LEVEL AND NOT ${MAG_NO_DEV_TOOLS})
     include(${CMAKE_CURRENT_SOURCE_DIR}/vendor/toolbox/cmake/CodeQuality.cmake)
 

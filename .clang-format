@@ -34,7 +34,6 @@ BraceWrapping:
 
 Cpp11BracedListStyle: true
 
-# Short constructs — always expanded
 AllowShortEnumsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: InlineOnly
 AllowShortIfStatementsOnASingleLine: Never

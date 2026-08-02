@@ -56,10 +56,13 @@ TEST_CASE("simd compile-time contracts", "[simd]")
 
 	STATIC_REQUIRE(std::same_as<basic_simd<float, native_abi>, native_simd<float>>);
 	STATIC_REQUIRE(std::same_as<fixed_simd<float, 4>, Simd<float, 4>>);
+	// clang-format off
+	// Newer versions of clang-format appear to format it differently, suppress the warning
 	STATIC_REQUIRE(
 		std::same_as<
 			decltype(load<float, fixed_abi<4>>(std::declval<const float*>())),
 			fixed_simd<float, 4>>);
+	// clang-format on
 	STATIC_REQUIRE(std::same_as<decltype(splat<float, fixed_abi<4>>(1.0f)), fixed_simd<float, 4>>);
 
 	STATIC_REQUIRE(supports_add<float, 4>);
